@@ -8,6 +8,8 @@ hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
 });
 
+localStorage.setItem("theme","dark")
+
 // Close mobile menu when clicking a link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
@@ -69,3 +71,66 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Run animation check on scroll
 window.addEventListener('scroll', animateOnScroll);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    
+    if (!themeToggle) {
+        console.error('Theme toggle button not found');
+        return;
+    }
+    
+    const icon = themeToggle.querySelector('.icon');
+    
+    if (!icon) {
+        console.error('Theme toggle icon not found');
+        return;
+    }
+
+    // Check for saved theme preference or default to dark mode
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    
+    // Apply the saved theme
+    if (currentTheme === 'light') {
+        body.classList.add('light-mode');
+        icon.textContent = '☀️';
+    } else {
+        icon.textContent = '🌙';
+    }
+
+    // Toggle theme function
+    // Replace this part in your JavaScript:
+function toggleTheme() {
+    document.documentElement.classList.toggle('light-mode'); // Changed from body to documentElement
+    
+    // Update icon and save preference
+    if (document.documentElement.classList.contains('light-mode')) {
+        icon.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+    } else {
+        icon.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Also update the initial theme application:
+if (currentTheme === 'light') {
+    document.documentElement.classList.add('light-mode'); // Changed from body to documentElement
+    icon.textContent = '☀️';
+} else {
+    icon.textContent = '🌙';
+}
+
+    // Add click event listener
+    themeToggle.addEventListener('click', toggleTheme);
+
+    // Optional: Add keyboard support
+    themeToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleTheme();
+        }
+    });
+});
