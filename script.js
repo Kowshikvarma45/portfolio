@@ -1,4 +1,3 @@
-// Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 const nav = document.querySelector('nav');
@@ -10,7 +9,6 @@ hamburger.addEventListener('click', () => {
 
 localStorage.setItem("theme","dark")
 
-// Close mobile menu when clicking a link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         hamburger.classList.remove('active');
@@ -18,7 +16,6 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-// Sticky Navigation on Scroll
 window.addEventListener('scroll', () => {
     if (window.scrollY > 100) {
         nav.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
@@ -27,7 +24,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Smooth Scrolling for Anchor Links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -42,7 +38,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Animate Elements on Scroll
 const animateOnScroll = () => {
     const elements = document.querySelectorAll('.project-card, .timeline-item, .skill-category');
     
@@ -57,7 +52,6 @@ const animateOnScroll = () => {
     });
 };
 
-// Set initial state for animated elements
 window.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.project-card, .timeline-item, .skill-category').forEach(element => {
         element.style.opacity = '0';
@@ -65,11 +59,9 @@ window.addEventListener('DOMContentLoaded', () => {
         element.style.transition = 'all 0.5s ease';
     });
     
-    // Trigger animation for elements already in view
     animateOnScroll();
 });
 
-// Run animation check on scroll
 window.addEventListener('scroll', animateOnScroll);
 
 
@@ -89,10 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Check for saved theme preference or default to dark mode
     const currentTheme = localStorage.getItem('theme') || 'dark';
     
-    // Apply the saved theme
     if (currentTheme === 'light') {
         body.classList.add('light-mode');
         icon.textContent = '☀️';
@@ -100,12 +90,10 @@ document.addEventListener('DOMContentLoaded', function() {
         icon.textContent = '🌙';
     }
 
-    // Toggle theme function
-    // Replace this part in your JavaScript:
-function toggleTheme() {
-    document.documentElement.classList.toggle('light-mode'); // Changed from body to documentElement
     
-    // Update icon and save preference
+function toggleTheme() {
+    document.documentElement.classList.toggle('light-mode'); 
+    
     if (document.documentElement.classList.contains('light-mode')) {
         icon.textContent = '☀️';
         localStorage.setItem('theme', 'light');
@@ -115,18 +103,15 @@ function toggleTheme() {
     }
 }
 
-// Also update the initial theme application:
 if (currentTheme === 'light') {
-    document.documentElement.classList.add('light-mode'); // Changed from body to documentElement
+    document.documentElement.classList.add('light-mode'); 
     icon.textContent = '☀️';
 } else {
     icon.textContent = '🌙';
 }
 
-    // Add click event listener
     themeToggle.addEventListener('click', toggleTheme);
 
-    // Optional: Add keyboard support
     themeToggle.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
